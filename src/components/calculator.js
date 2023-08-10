@@ -1,54 +1,55 @@
 import React from 'react';
-import calculate from './logic/calculate';
+import calculate from '../logic/calculate';
 
-class CalcUserInterface extends React.Component { // eslint-disable-line
+class Calculator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { total: 0, next: null, operation: null };
+    this.state = { total: null, next: null, operation: null };
   }
 
-  handleClick = (event) => {
-    const buttonName = event.target.innerText;
-    const result = calculate(this.state, buttonName);
-    this.setState(result);
-  }
+  eventHandler = (e) => {
+    const data = e.target.innerHTML;
+    const calcObj = calculate(this.state, data);
+    this.setState(calcObj);
+  };
 
   render() {
     const { total, next, operation } = this.state;
     return (
-      <section>
-        <div className="container">
-          <div className="header">
-            <button type="button" className="tag">
-              {total}
-              {operation}
-              {next}
-            </button>
-          </div>
-          <div className="calc-button">
-            <button type="submit" onClick={this.handleClick}>AC</button>
-            <button type="submit" onClick={this.handleClick}>+/-</button>
-            <button type="submit" onClick={this.handleClick}>%</button>
-            <button type="submit" onClick={this.handleClick} className="box-color">÷</button>
-            <button type="submit" onClick={this.handleClick}>7</button>
-            <button type="submit" onClick={this.handleClick}>8</button>
-            <button type="submit" onClick={this.handleClick}>9</button>
-            <button type="submit" onClick={this.handleClick} className="box-color">x</button>
-            <button type="submit" onClick={this.handleClick}>4</button>
-            <button type="submit" onClick={this.handleClick}>5</button>
-            <button type="submit" onClick={this.handleClick}>6</button>
-            <button type="submit" onClick={this.handleClick} className="box-color">-</button>
-            <button type="submit" onClick={this.handleClick}>1</button>
-            <button type="submit" onClick={this.handleClick}>2</button>
-            <button type="submit" onClick={this.handleClick}>3</button>
-            <button type="submit" onClick={this.handleClick} className="box-color">+</button>
-            <button type="submit" onClick={this.handleClick} className="zero">0</button>
-            <button type="submit" onClick={this.handleClick}>.</button>
-            <button type="submit" onClick={this.handleClick} className="box-color">=</button>
-          </div>
+      <div className="calc-wrapper">
+        <div className="inp-display">
+
+          {total}
+          {'  '}
+          {operation}
+          {'  '}
+          {next}
+
         </div>
-      </section>
+        <div className="grid">
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>AC</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>+/-</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>%</button>
+          <button className="calc-btn op" type="button" onClick={this.eventHandler}>+</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>7</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>8</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>9</button>
+          <button className="calc-btn op" type="button" onClick={this.eventHandler}>x</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>4</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>5</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>6</button>
+          <button className="calc-btn op" onClick={this.eventHandler} type="button">-</button>
+          <button className="calc-btn" onClick={this.eventHandler} type="button">1</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>2</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>3</button>
+          <button className="calc-btn op" type="button" onClick={this.eventHandler}>÷</button>
+          <button className="calc-btn zero-btn" type="button" onClick={this.eventHandler}>0</button>
+          <button className="calc-btn" type="button" onClick={this.eventHandler}>.</button>
+          <button className="calc-btn op" type="button" onClick={this.eventHandler}>=</button>
+        </div>
+      </div>
     );
   }
-}
-export default CalcUserInterface;
+} // end of class definition
+
+export default Calculator;

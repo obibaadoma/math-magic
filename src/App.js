@@ -1,11 +1,19 @@
+import './App.css';
 import React from 'react';
-import CalcButton from './components/calcButton';
+import Calculator from './components/Calculator';
+import './components/styles.css';
 
-// eslint-disable-next-line
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
-      <CalcButton />
+      <div className="App">
+        <Calculator />
+      </div>
     );
   }
 }
