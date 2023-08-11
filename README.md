@@ -25,7 +25,7 @@
 # 📖 [Math-app] <a name="about-project"></a>
 
 
-Mathapp The JavaScript project is a calculator app.
+Math-Magic The JavaScript project is a calculator app.
 
 ## 🛠 Built With <a name="built-with"></a>
 
