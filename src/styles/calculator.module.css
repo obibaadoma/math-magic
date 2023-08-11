@@ -1,0 +1,41 @@
+.section {
+  max-width: 600px;
+  display: grid;
+  gap: 1px;
+  padding: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: #ccc;
+  margin: 25px auto;
+}
+
+.result {
+  color: #fff;
+  padding: 10px;
+  text-align: end;
+  grid-column: 1 / span 4;
+  font: bolder 1.5rem/3rem var(--font-family);
+  background-color: #aaa;
+}
+
+.button {
+  height: 80px;
+  cursor: pointer;
+  font: 1.2rem var(--font-family);
+  background-color: #eee;
+}
+
+.zero {
+  grid-column: 1 / span 2;
+}
+
+.orange {
+  background-color: rgb(255, 155, 0);
+}
+
+.button:hover {
+  background-color: #ddd;
+}
+
+.orange:hover {
+  background-color: rgb(255, 120, 0);
+}

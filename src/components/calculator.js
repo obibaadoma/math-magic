@@ -1,55 +1,42 @@
 import React from 'react';
-import '../stylesheet/Calculator.css';
-import calculate from '../logic/calculate';
+import PropTypes from 'prop-types';
+import Calculate from '../logic/calculate';
+import Styles from '../styles/calculator.module.css';
 
-class Calculator extends React.Component {
+const Button = ({ name, handler }) => {
+  let className = `${Styles.button}`;
+  if (['÷', 'x', '-', '+', '='].includes(name)) {
+    className = `${Styles.button} ${Styles.orange}`;
+  } else if (name === '0') {
+    className = `${Styles.button} ${Styles.zero}`;
+  }
+  return <button type="button" onClick={handler} className={className}>{name}</button>;
+};
+
+Button.propTypes = { name: PropTypes.string.isRequired };
+Button.propTypes = { handler: PropTypes.func.isRequired };
+
+export default class Calculator extends React.Component {
   constructor(props) {
     super(props);
-    this.clickHandler = this.clickHandler.bind(this);
-    this.state = {
-      total: 0,
-      next: null,
-      operation: null,
-    };
+    this.state = { operation: { } };
+    this.handleButton = this.handleButton.bind(this);
+    this.values = ['AC', '+/-', '%', '÷', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '0', '.', '='];
   }
 
-  clickHandler(e) {
-    this.setState((state) => calculate(state, e.target.textContent));
+  handleButton = (event) => {
+    this.setState((state) => ({ operation: Calculate(state.operation, event.target.textContent) }));
   }
 
-  render() {
-    const { total, next, operation } = this.state;
+  displayButtons = (value) => <Button key={value} name={value} handler={this.handleButton} />;
+
+  render = () => {
+    const { operation: { total, next } } = this.state;
     return (
-      <div className="calculator">
-        <p className="screen">
-          {total}
-          {operation}
-          {next}
-        </p>
-        <div className="keys">
-          <button type="button" onClick={this.clickHandler}>AC</button>
-          <button type="button" onClick={this.clickHandler}>+/-</button>
-          <button type="button" onClick={this.clickHandler}>%</button>
-          <button type="button" className="orange" onClick={this.clickHandler}>÷</button>
-          <button type="button" onClick={this.clickHandler}>7</button>
-          <button type="button" onClick={this.clickHandler}>8</button>
-          <button type="button" onClick={this.clickHandler}>9</button>
-          <button type="button" className="orange" onClick={this.clickHandler}>x</button>
-          <button type="button" onClick={this.clickHandler}>4</button>
-          <button type="button" onClick={this.clickHandler}>5</button>
-          <button type="button" onClick={this.clickHandler}>6</button>
-          <button type="button" className="orange" onClick={this.clickHandler}>-</button>
-          <button type="button" onClick={this.clickHandler}>1</button>
-          <button type="button" onClick={this.clickHandler}>2</button>
-          <button type="button" onClick={this.clickHandler}>3</button>
-          <button type="button" className="orange" onClick={this.clickHandler}>+</button>
-          <button type="button" className="btn0" onClick={this.clickHandler}>0</button>
-          <button type="button" onClick={this.clickHandler}>.</button>
-          <button type="button" className="orange" onClick={this.clickHandler}>=</button>
-        </div>
-      </div>
+      <section className={Styles.section}>
+        <p className={Styles.result}>{next === null || next === undefined ? (total || 0) : next}</p>
+        {this.values.map(this.displayButtons)}
+      </section>
     );
   }
 }
-
-export default Calculator;
