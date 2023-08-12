@@ -1,11 +1,11 @@
 import './App.css';
-import React from 'react';
 import Calculator from './components/calculator';
-import './components/styles.css';
+import Quote from './components/Quote';
 
 function App() {
   return (
     <div className="App">
+      <Quote />
       <Calculator />
     </div>
   );

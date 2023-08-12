@@ -1,49 +1,40 @@
-import React, { useState } from 'react';
-import calculate from '../logic/calculate';
+import { useState } from 'react';
+import Operators from './Operators';
+import calculate from '../Logic/calculate';
 
-function Calculator() {
-  const [calcObj, setState] = useState({ total: null, next: null, operation: null });
+const Calculator = () => {
+  const [calculatorState, setCalculatorState] = useState({
+    total: null,
+    next: null,
+    operation: null,
+  });
 
-  const eventHandler = (e) => {
-    const data = e.target.innerHTML;
-    setState((calcObj) => calculate(calcObj, data));
+  const handleOperations = (buttonName) => {
+    setCalculatorState(calculate(calculatorState, buttonName));
   };
-
-  const { total, next, operation } = calcObj;
   return (
-    <div className="calc-wrapper">
-      <div className="inp-display">
-
-        {total}
-        {'  '}
-        {operation}
-        {'  '}
-        {next}
-
+    <section className="calculator">
+      <div className="display">{calculatorState.next || calculatorState.total || '0'}</div>
+      <div className="numbOperation">
+        <div className="numbers">
+          <div><button type="button" onClick={() => { handleOperations('AC'); }}>AC</button></div>
+          <div><button type="button" onClick={() => { handleOperations('+/-'); }}>+/-</button></div>
+          <div><button type="button" onClick={() => { handleOperations('%'); }}>%</button></div>
+          <div><button type="button" onClick={() => { handleOperations('7'); }}>7</button></div>
+          <div><button type="button" onClick={() => { handleOperations('8'); }}>8</button></div>
+          <div><button type="button" onClick={() => { handleOperations('9'); }}>9</button></div>
+          <div><button type="button" onClick={() => { handleOperations('4'); }}>4</button></div>
+          <div><button type="button" onClick={() => { handleOperations('5'); }}>5</button></div>
+          <div><button type="button" onClick={() => { handleOperations('6'); }}>6</button></div>
+          <div><button type="button" onClick={() => { handleOperations('1'); }}>1</button></div>
+          <div><button type="button" onClick={() => { handleOperations('2'); }}>2</button></div>
+          <div><button type="button" onClick={() => { handleOperations('3'); }}>3</button></div>
+          <div className="zero"><button type="button" onClick={() => { handleOperations('0'); }}>0</button></div>
+          <div><button type="button" onClick={() => { handleOperations('.'); }}>.</button></div>
+        </div>
+        <Operators Click={handleOperations} />
       </div>
-      <div className="grid">
-        <button className="calc-btn" type="button" onClick={eventHandler}>AC</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>+/-</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>%</button>
-        <button className="calc-btn op" type="button" onClick={eventHandler}>+</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>7</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>8</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>9</button>
-        <button className="calc-btn op" type="button" onClick={eventHandler}>x</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>4</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>5</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>6</button>
-        <button className="calc-btn op" onClick={eventHandler} type="button">-</button>
-        <button className="calc-btn" onClick={eventHandler} type="button">1</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>2</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>3</button>
-        <button className="calc-btn op" type="button" onClick={eventHandler}>÷</button>
-        <button className="calc-btn zero-btn" type="button" onClick={eventHandler}>0</button>
-        <button className="calc-btn" type="button" onClick={eventHandler}>.</button>
-        <button className="calc-btn op" type="button" onClick={eventHandler}>=</button>
-      </div>
-    </div>
+    </section>
   );
-} // end of function
-
+};
 export default Calculator;

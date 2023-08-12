@@ -1,3 +1,75 @@
+html {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .App {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 100px;
+}
+
+.Quote {
+  max-width: 50%;
+}
+
+span {
+  color: red;
+  font-size: 1.2rem;
+}
+
+.calculator {
+  width: 40%;
+  margin: 100px auto;
+  border: 0.5px solid wheat;
+  box-shadow: 1px 1px 3px 1px;
+}
+
+.numbOperation {
+  display: flex;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.display {
+  max-width: 100%;
+  background-color: grey;
+  padding: 15px 4px;
+  text-align: end;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.numbers {
+  background-color: rgb(241, 236, 236);
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   text-align: center;
+}
+
+.numbOperation button {
+  width: 100%;
+  padding: 15px;
+  border: 0.5px solid rgb(207, 203, 203);
+  cursor: pointer;
+}
+
+.zero {
+  grid-row: 5;
+  grid-column: span 2;
+}
+
+.operators {
+  text-align: center;
+  width: 20%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.operators button {
+  background-color: rgb(255, 68, 0);
 }
