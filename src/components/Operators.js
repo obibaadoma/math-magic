@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/prop-types
 const Operators = ({ Click }) => (
   <div className="operators">
     <div><button type="button" onClick={() => Click('+')}>+</button></div>
