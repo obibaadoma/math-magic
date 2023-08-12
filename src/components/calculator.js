@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Operators from './Operators';
-import calculate from '../Logic/calculate';
+import calculate from './Logic/calculate';
 
 const Calculator = () => {
   const [calculatorState, setCalculatorState] = useState({
