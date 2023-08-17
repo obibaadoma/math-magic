@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Quote = () => (
+const quote = () => (
   <div className="quote">
     <p>
       Pure mathematics is, in its way, the poetry of logical ideas. :-Albert Einstein
@@ -14,4 +14,4 @@ const Quote = () => (
   </div>
 );
 
-export default Quote;
+export default quote;
