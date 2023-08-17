@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/navbar';
 import HomePage from './components/home';
-import Quote from './components/quote';
+import Quote from './components/quote.js';
 import CalcUserInterface from './components/calculator';
 
 const App = () => (
