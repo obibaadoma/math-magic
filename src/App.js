@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/navbar';
 import HomePage from './components/home';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Quote from './components/quote';
 import CalcUserInterface from './components/calculator';
 
